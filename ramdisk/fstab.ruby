@@ -8,7 +8,11 @@
 /dev/block/mmcblk0p23 /recovery emmc  defaults                                          defaults
 /dev/block/mmcblk0p31 /data     ext4	noatime,nosuid,nodev,data=ordered,noauto_da_alloc	wait,encryptable=footer
 
-#SDcard
-/devices/platform/msm_sdcc.1/mmc_host/mmc0    /storage/sdcard0    auto    defaults    voldmanaged=sdcard0:auto
+# Internal
+/devices/platform/msm_sdcc.1/mmc_host/mmc0    /storage/sdcard0    auto    defaults    voldmanaged=sdcard0:36
+
+# External
 /devices/platform/msm_sdcc.3/mmc_host/mmc2    /storage/sdcard1    auto    defaults    voldmanaged=sdcard1:auto
+
+# Usbdisk
 /devices/platform/msm_hsusb.0/usb1            /storage/usbdisk    auto    defaults    voldmanaged=usbdisk:auto
