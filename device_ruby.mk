@@ -21,6 +21,9 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
+# call proprietary setup
+$(call inherit-product-if-exists, vendor/htc/ruby/ruby-vendor.mk)
+
 # common msm8660 configs
 $(call inherit-product, device/htc/msm8660-common/msm8660.mk)
 
@@ -119,9 +122,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.lockprof.threshold=500 \
     ro.com.google.locationfeatures=1 \
     dalvik.vm.dexopt-flags=m=y
-
-# call proprietary setup
-$(call inherit-product-if-exists, vendor/htc/ruby/ruby-vendor.mk)
 
 # htc audio settings
 $(call inherit-product, device/htc/ruby/media_a1026.mk)
