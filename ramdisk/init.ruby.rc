@@ -4,7 +4,7 @@ on early-init
     # 4.3 needs this
     chmod 0777 /proc/cmdline
     
-    mkdir /storage 0050 system sdcard_r
+    mkdir /storage 0050 root sdcard_r
     mkdir /storage/usbdisk 0000 system system
     mkdir /storage/sdcard0 0000 system system
     symlink /storage/sdcard0 /sdcard
