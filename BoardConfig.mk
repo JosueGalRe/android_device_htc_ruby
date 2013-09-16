@@ -66,6 +66,12 @@ WIFI_FIRMWARE_LOADER             := ""
 # QCOM GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := ruby
 
+# AUDIO
+BOARD_USES_FLUENCE_INCALL := true  # use DMIC in call only
+BOARD_USES_SEPERATED_AUDIO_INPUT := true  # use distinct voice recognition use case
+BOARD_USES_SEPERATED_CAMCORDER := true  # use distinct camcorder use cases
+BOARD_USES_SEPERATED_VOICE_SPEAKER := true  # use distinct voice speaker use case
+
 # NFC
 BOARD_HAVE_NFC := true
 
