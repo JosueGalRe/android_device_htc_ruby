@@ -1,6 +1,6 @@
 import init.ruby.usb.rc
 
-on early-init
+on init
     # 4.3 needs this
     chmod 0777 /proc/cmdline
     
@@ -70,7 +70,6 @@ on early-init
     # Force loading of modem and Q6 images
     write /dev/smd_pkt_loopback 1
 
-on init
     mkdir /devlog 0700 root root
 
 on fs
