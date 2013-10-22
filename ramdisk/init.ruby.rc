@@ -7,19 +7,21 @@ on init
     mkdir /storage 0050 root sdcard_r
     mkdir /storage/usbdisk 0000 system system
     mkdir /storage/sdcard0 0000 system system
+    mkdir /storage/sdcard1 0000 system system
+    mkdir /storage/usbdisk 0775 system system
+
+    # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
-
-    mkdir /storage/usbdisk 0775 system system
-    mkdir /storage/sdcard1 0000 system system
     symlink /storage/sdcard1 /external_sd
     symlink /storage/sdcard1 /mnt/external_sd
-    
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
 
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
+
+    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
 
     # msm8x60 firmware
     rm /vendor
