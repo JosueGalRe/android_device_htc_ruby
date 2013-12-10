@@ -3,28 +3,35 @@ import init.ruby.usb.rc
 on init
     # 4.3 needs this
     chmod 0777 /proc/cmdline
-    
+
+    # Begin Storage
+
+    mkdir /storage 0550 system sdcard_r
+
     # Internal
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/sdcard0 0000 system system
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
    
     # External
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/usbdisk 0000 system system
     mkdir /storage/sdcard1 0000 system system
-    mkdir /storage/usbdisk 0775 system system
-
-    # for backwards compatibility
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
     symlink /storage/sdcard1 /external_sd
     symlink /storage/sdcard1 /mnt/external_sd
+
+    # Usbdisk
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk0 0000 system system
+    mkdir /storage/usbdisk0 0775 system system
     symlink /storage/usbdisk0 /usbdisk0
     symlink /storage/usbdisk0 /mnt/usbdisk0
 
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk0
+
+    # End Storage
 
     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
 
@@ -239,11 +246,15 @@ service ewtzmud /system/bin/ewtzmud
     user system
     group system misc input
 
-service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
     class late_start
     oneshot
  
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled
 
