@@ -243,7 +243,8 @@ service htcbatt /system/bin/htcbatt
     class main
     user root
 
-service initial_regdom /system/bin/initial_regdom.sh
+service initial_regdom /system/bin/initial_regdom
+.sh
      oneshot
      disabled
 
@@ -267,6 +268,7 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class main
     user root
     disabled
+    oneshot
 
 service qmuxd /system/bin/qmuxd
     class main
