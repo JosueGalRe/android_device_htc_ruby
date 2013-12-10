@@ -14,20 +14,31 @@
 # limitations under the License.
 #
 
-# Media Configuration for the HTC Ruby (TMO-US) - Override MSM8660
-PRODUCT_COPY_FILES += \
-    device/htc/ruby/configs/media_profiles.xml:system/etc/media_profiles.xml
-
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
-# call proprietary setup
-$(call inherit-product-if-exists, vendor/htc/ruby/ruby-vendor.mk)
-
-# common msm8660 configs
+# Inherite msm8660-common configs
 $(call inherit-product, device/htc/msm8660-common/msm8660.mk)
 
+# Ramdisk files
+PRODUCT_COPY_FILES += \
+    device/htc/ruby/ramdisk/fstab.ruby:root/fstab.ruby \
+    device/htc/ruby/ramdisk/init.qcom.sh:root/init.qcom.sh \
+    device/htc/ruby/ramdisk/init.ruby.rc:root/init.ruby.rc \
+    device/htc/ruby/ramdisk/init.ruby.usb.rc:root/init.ruby.usb.rc \
+    device/htc/ruby/ramdisk/ueventd.ruby.rc:root/ueventd.ruby.rc
+
+# Dalvik
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.setupwizard.enable_bypass=1 \
+    dalvik.vm.lockprof.threshold=500 \
+    ro.com.google.locationfeatures=1 \
+    dalvik.vm.dexopt-flags=m=y
+
 DEVICE_PACKAGE_OVERLAYS += device/htc/ruby/overlay
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -41,7 +52,7 @@ PRODUCT_PACKAGES += \
     Tag \
     com.android.nfc_extras
 
-# Wifi
+# Wi-Fi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
     hostapd.conf \
@@ -50,18 +61,6 @@ PRODUCT_PACKAGES += \
     TQS_D_1.7.ini \
     TQS_D_1.7_127x.ini \
     calibrator
-
-# netcmdiface
-PRODUCT_PACKAGES += \
-    libnetcmdiface
-
-# Ramdisk files
-PRODUCT_COPY_FILES += \
-    device/htc/ruby/ramdisk/fstab.ruby:root/fstab.ruby \
-    device/htc/ruby/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/htc/ruby/ramdisk/init.ruby.rc:root/init.ruby.rc \
-    device/htc/ruby/ramdisk/init.ruby.usb.rc:root/init.ruby.usb.rc \
-    device/htc/ruby/ramdisk/ueventd.ruby.rc:root/ueventd.ruby.rc
 
 # recovery and custom charging
 PRODUCT_COPY_FILES += \
@@ -75,7 +74,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/ruby/keychars/ruby-keypad.kcm:system/usr/keychars/ruby-keypad.kcm \
     device/htc/ruby/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
-    device/htc/ruby/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     device/htc/ruby/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     device/htc/ruby/keylayout/ruby-keypad.kl:system/usr/keylayout/ruby-keypad.kl
 
@@ -84,7 +82,7 @@ PRODUCT_COPY_FILES += \
     device/htc/ruby/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
     device/htc/ruby/idc/ruby-keypad.idc:system/usr/idc/ruby-keypad.idc
 
-# Sound configs
+# Sound Configs
 PRODUCT_COPY_FILES += \
     device/htc/ruby/dsp/soundimage/Sound_MFG.txt:system/etc/soundimage/Sound_MFG.txt \
     device/htc/ruby/dsp/soundimage/Sound_Original.txt:system/etc/soundimage/Sound_Original.txt \
@@ -110,20 +108,13 @@ PRODUCT_COPY_FILES += \
     device/htc/ruby/dsp/TPA2051_CFG_XB.csv:system/etc/TPA2051_CFG_XB.csv \
     device/htc/ruby/dsp/TPA2051_CFG_XC.csv:system/etc/TPA2051_CFG_XC.csv
 
-# Permissions
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# misc
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.setupwizard.enable_bypass=1 \
-    dalvik.vm.lockprof.threshold=500 \
-    ro.com.google.locationfeatures=1 \
-    dalvik.vm.dexopt-flags=m=y
+# call proprietary setup
+$(call inherit-product-if-exists, vendor/htc/ruby/ruby-vendor.mk)
 
-# htc audio settings
+# HTC Audio Settings
 $(call inherit-product, device/htc/ruby/media_a1026.mk)
 $(call inherit-product, device/htc/ruby/media_htcaudio.mk)
 
