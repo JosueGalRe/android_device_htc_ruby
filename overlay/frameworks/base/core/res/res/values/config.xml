@@ -145,7 +145,7 @@
 
     <!-- tetherable USB interfaces. -->
     <string-array translatable="false" name="config_tether_usb_regexs">
-        <item>"usb//d"</item>
+        <item>"usb\\d"</item>
     </string-array>
 
     <!-- tetherable Wifi interfaces. -->
