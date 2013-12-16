@@ -145,12 +145,12 @@
 
     <!-- tetherable USB interfaces. -->
     <string-array translatable="false" name="config_tether_usb_regexs">
-        <item>"usb0"</item>
+        <item>"usb//d"</item>
     </string-array>
 
     <!-- tetherable Wifi interfaces. -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wlan\\d"</item>
+        <item>"wlan0"</item>
     </string-array>
 
     <!-- tetherable bluetooth interfaces. -->
