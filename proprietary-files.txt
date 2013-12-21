@@ -32,6 +32,7 @@ lib/libaudioalsa.so
 lib/libhtc_acoustic.so
 
 # Camera
+lib/hw/vendor-camera.msm8660.so
 lib/hw/camera.default.so
 lib/libcameraface.so
 lib/libcamerapp.so
@@ -66,7 +67,6 @@ lib/libsc-a2xx.so
 
 # Misc libraries
 lib/libdsm.so
-
 lib/libmm-color-convertor.so
 lib/liboncrpc.so
 lib/libpbmlib.so
@@ -88,6 +88,7 @@ lib/libqmiservices.so
 lib/libqueue.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
+lib/libhtc_ril.so
 
 # Sensors
 lib/hw/sensors.ruby.so
@@ -95,3 +96,15 @@ lib/libmllite.so
 lib/libmlplatform.so
 lib/libmpl_jni.so
 lib/libmpl.so
+
+etc/permissions/com.google.widevine.software.drm.xml
+framework/com.google.widevine.software.drm.jar
+lib/egl/libGLESv2S3D_adreno200.so
+lib/hw/vendor-camera.default.so
+lib/libcameraSP.so
+lib/libdll.so
+lib/libWVphoneAPI.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libwvdrm_L1.so
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L1.so
