@@ -14,8 +14,8 @@
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    device/htc/msm8660-common/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/htc/msm8660-common/prebuilt/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
+    device/htc/ruby/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    device/htc/ruby/prebuilt/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -96,15 +96,15 @@ PRODUCT_PACKAGES += \
 
 # Media configuration
 PRODUCT_COPY_FILES += \
-    device/htc/msm8660-common/configs/media_codecs.xml:system/etc/media_codecs.xml \
-    device/htc/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml
+    device/htc/ruby/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/htc/ruby/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 
 # MSM8660 firmware
 PRODUCT_COPY_FILES += \
-    device/htc/msm8660-common/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
-    device/htc/msm8660-common/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
-    device/htc/msm8660-common/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw
+    device/htc/ruby/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
+    device/htc/ruby/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
+    device/htc/ruby/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw
 
 
 # Device uses high-density artwork where available
@@ -126,6 +126,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camera wrapper
 PRODUCT_PACKAGES += \
     camera.msm8660
-
-# call the proprietary setup
-$(call inherit-product-if-exists, vendor/htc/msm8660-common/msm8660-common-vendor.mk)

@@ -25,7 +25,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product-if-exists, vendor/htc/ruby/ruby-vendor.mk)
 
 # common msm8660 configs
-$(call inherit-product, device/htc/msm8660-common/msm8660.mk)
+$(call inherit-product, device/htc/ruby/msm8660.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/ruby/overlay
 
