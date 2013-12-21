@@ -22,7 +22,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # call proprietary setup
-$(call inherit-product-if-exists, vendor/htc/ruby/ruby-vendor.mk)
+$(call inherit-product-if-exists, vendor/htc-extra/ruby/ruby-vendor.mk)
 
 # common msm8660 configs
 $(call inherit-product, device/htc/ruby/msm8660.mk)
