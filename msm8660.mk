@@ -99,13 +99,11 @@ PRODUCT_COPY_FILES += \
     device/htc/ruby/configs/media_codecs.xml:system/etc/media_codecs.xml \
     device/htc/ruby/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-
 # MSM8660 firmware
 PRODUCT_COPY_FILES += \
     device/htc/ruby/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
     device/htc/ruby/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
     device/htc/ruby/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw
-
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
