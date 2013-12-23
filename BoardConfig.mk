@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BOARD_VENDOR := htc
-
-TARGET_SPECIFIC_HEADER_PATH := device/htc/ruby/include
-
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := ruby
+
+# Vendor
+BOARD_VENDOR := htc
+TARGET_SPECIFIC_HEADER_PATH := device/htc/ruby/include
 
 # Kernel
 BOARD_KERNEL_BASE := 0x48000000
@@ -53,8 +53,8 @@ TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Wifi
 COMMON_GLOBAL_CFLAGS += -DUSES_TI_MAC80211
-USES_TI_MAC80211                 := true
 
+USES_TI_MAC80211                 := true
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
@@ -88,9 +88,6 @@ BOARD_QCOM_TUNNEL_LPA_ENABLED := false
 # Flags
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
-# FB legacy
-BOARD_EGL_NEEDS_LEGACY_FB := true
-
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/ruby/bluetooth/include
@@ -110,17 +107,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 2684354048
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_VOLD_MAX_PARTITIONS := 36
 
-# USB
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
-
-# Recovery
-BOARD_USES_MMCUTILS := true
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
-BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
-TARGET_RECOVERY_FSTAB = device/htc/ruby/ramdisk/fstab.ruby
-RECOVERY_FSTAB_VERSION := 2
-
 # Camera
 BOARD_USES_QCOM_LEGACY_CAM_PARAMS := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DNO_UPDATE_PREVIEW
@@ -130,6 +116,7 @@ BOARD_NEEDS_MEMORYHEAPPMEM := true
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 
 # Graphics
+BOARD_EGL_NEEDS_LEGACY_FB := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK -DREFRESH_RATE=60 -DHTC_RGBA_8888_OFFSET
 USE_OPENGL_RENDERER := true
 TARGET_NO_HW_VSYNC := true
@@ -137,13 +124,23 @@ TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/htc/ruby/configs/egl.cfg
 
 # Lights
-# legacy LIBLIGHT naming
 TARGET_PROVIDES_LIBLIGHT := true
 TARGET_PROVIDES_LIBLIGHTS := true
 
 # Webkit
 ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
+
+# Recovery
+BOARD_USES_MMCUTILS := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
+BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
+TARGET_RECOVERY_FSTAB = device/htc/ruby/ramdisk/fstab.ruby
+RECOVERY_FSTAB_VERSION := 2
+
+# USB
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 
 # Hardware tunables
 BOARD_HARDWARE_CLASS := device/htc/ruby/cmhw
