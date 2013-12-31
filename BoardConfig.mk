@@ -52,7 +52,19 @@ WLAN_MODULES:
 TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Wifi
--include device/htc/ruby/bcmdhd.mk
+COMMON_GLOBAL_CFLAGS += -DUSES_TI_MAC80211
+
+USES_TI_MAC80211                 := true
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wl12xx
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_wl12xx
+BOARD_WLAN_DEVICE                := wl12xx_mac80211
+BOARD_SOFTAP_DEVICE              := wl12xx_mac80211
+WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wl12xx_sdio.ko"
+WIFI_DRIVER_MODULE_NAME          := "wl12xx_sdio"
+WIFI_FIRMWARE_LOADER             := ""
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
@@ -79,8 +91,6 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := device/htc/ruby/bluetooth/vnd_msm8660.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/ruby/bluetooth/include
 
 # NFC

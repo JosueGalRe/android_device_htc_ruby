@@ -52,11 +52,6 @@ PRODUCT_PACKAGES += \
     TQS_D_1.7_127x.ini \
     calibrator
 
-# Bluetooth
-PRODUCT_COPY_FILES += \
-    device/htc/ruby/firmware/bcm4330.hcd:system/vendor/firmware/bcm4330.hcd \
-    device/htc/ruby/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
-	
 # netcmdiface
 PRODUCT_PACKAGES += \
     libnetcmdiface
