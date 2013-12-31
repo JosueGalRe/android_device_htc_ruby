@@ -1,6 +1,3 @@
-#
-# Copyright (C) 2012 The CyanogenMod Project
-#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -17,13 +14,21 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# call proprietary setup
-$(call inherit-product-if-exists, vendor/htc-extra/ruby/ruby-vendor.mk)
-
 # common msm8660 configs
 $(call inherit-product, device/htc/ruby/msm8660.mk)
 
+# call proprietary setup
+$(call inherit-product-if-exists, vendor/htc-extra/ruby/ruby-vendor.mk)
+
 DEVICE_PACKAGE_OVERLAYS += device/htc/ruby/overlay
+
+# Ramdisk files
+PRODUCT_COPY_FILES += \
+    device/htc/ruby/ramdisk/fstab.ruby:root/fstab.ruby \
+    device/htc/ruby/ramdisk/init.qcom.sh:root/init.qcom.sh \
+    device/htc/ruby/ramdisk/init.ruby.rc:root/init.ruby.rc \
+    device/htc/ruby/ramdisk/init.ruby.usb.rc:root/init.ruby.usb.rc \
+    device/htc/ruby/ramdisk/ueventd.ruby.rc:root/ueventd.ruby.rc
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -47,17 +52,14 @@ PRODUCT_PACKAGES += \
     TQS_D_1.7_127x.ini \
     calibrator
 
+# Bluetooth
+PRODUCT_COPY_FILES += \
+    device/htc/ruby/firmware/bcm4330.hcd:system/vendor/firmware/bcm4330.hcd \
+    device/htc/ruby/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
+	
 # netcmdiface
 PRODUCT_PACKAGES += \
     libnetcmdiface
-
-# Ramdisk files
-PRODUCT_COPY_FILES += \
-    device/htc/ruby/ramdisk/fstab.ruby:root/fstab.ruby \
-    device/htc/ruby/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/htc/ruby/ramdisk/init.ruby.rc:root/init.ruby.rc \
-    device/htc/ruby/ramdisk/init.ruby.usb.rc:root/init.ruby.usb.rc \
-    device/htc/ruby/ramdisk/ueventd.ruby.rc:root/ueventd.ruby.rc
 
 # recovery and custom charging
 PRODUCT_COPY_FILES += \
