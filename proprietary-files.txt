@@ -33,7 +33,6 @@ lib/libhtc_acoustic.so
 
 # Camera
 lib/hw/vendor-camera.msm8660.so
-lib/hw/camera.default.so
 lib/libcameraface.so
 lib/libcamerapp.so
 lib/libgemini.so
@@ -100,7 +99,6 @@ lib/libmpl.so
 etc/permissions/com.google.widevine.software.drm.xml
 framework/com.google.widevine.software.drm.jar
 lib/egl/libGLESv2S3D_adreno200.so
-lib/hw/vendor-camera.default.so
 lib/libcameraSP.so
 lib/libdll.so
 lib/libWVphoneAPI.so
